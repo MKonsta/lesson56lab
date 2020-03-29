@@ -13,12 +13,14 @@ public class Task {
 
     @Id
     private String id;
+    private String name;
     private String description;
-    private LocalDate date; //на какую дату запланированно
+    private String date; //на какую дату запланированно
     private String userEmail;
     private Status status;
 
-    public Task(String description, LocalDate date, String userEmail, Status status) {
+    public Task(String name, String description, String date, String userEmail, Status status) {
+        this.name = name;
         this.description = description;
         this.date = date;
         this.userEmail = userEmail;
@@ -44,11 +46,11 @@ public class Task {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -58,6 +60,14 @@ public class Task {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Status getStatus() {
