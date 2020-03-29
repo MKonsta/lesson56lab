@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.model.Status;
+import com.example.demo.model.Task;
 
 import java.time.LocalDate;
 
@@ -16,6 +17,10 @@ public class ResponseTaskDto {
         this.name = name;
         this.status = status;
         this.date = date;
+    }
+
+    public static ResponseTaskDto from(Task task) {
+        return new ResponseTaskDto(task.getId(), task.getName(), task.getStatus().toString(), task.getDate());
     }
 
     public ResponseTaskDto() {

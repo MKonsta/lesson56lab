@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // должно быть доступно только
         // после авторизации пользователя
         http.authorizeRequests().antMatchers("/task/add").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/task/all").fullyAuthenticated();
 //        http.authorizeRequests().antMatchers("/pub/del/**").fullyAuthenticated();
 //        http.authorizeRequests().antMatchers("/comment/add").fullyAuthenticated();
 //        http.authorizeRequests().antMatchers("/comment/del/**").fullyAuthenticated();
