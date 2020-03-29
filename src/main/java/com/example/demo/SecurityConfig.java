@@ -3,7 +3,6 @@ package com.example.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,11 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // после авторизации пользователя
         http.authorizeRequests().antMatchers("/task/add").fullyAuthenticated();
         http.authorizeRequests().antMatchers("/task/all").fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/pub/del/**").fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/comment/add").fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/comment/del/**").fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/events/add").fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/like/add").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/task/change/**").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/task/desc/**").fullyAuthenticated();
+
         // Правило 2: Разрешить всё остальные запросы
         http.authorizeRequests().anyRequest().permitAll();
 

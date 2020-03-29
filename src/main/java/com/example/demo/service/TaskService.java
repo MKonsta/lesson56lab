@@ -37,4 +37,28 @@ public class TaskService {
 
         return slice.map(ResponseTaskDto::from);
     }
+
+    public ResponseTaskDto changeStatus(String taskId, User user) {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task != null && task.getUserEmail().equals(user.getEmail())) {
+            if (task.getStatus().equals(Status.NEW)) {
+                task.setStatus(Status.IN_WORK);
+            } else if (task.getStatus().equals(Status.IN_WORK)) {
+                task.setStatus(Status.DONE);
+            }
+
+            taskRepository.save(task);
+            return ResponseTaskDto.from(task);
+        }
+        return null;
+    }
+
+    public String getDescriptionForUserTask(String taskId, User user) {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task != null && task.getUserEmail().equals(user.getEmail())) {
+            return task.getDescription();
+        }
+
+        return "ERROR!";
+    }
 }
